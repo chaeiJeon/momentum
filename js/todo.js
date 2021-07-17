@@ -15,20 +15,33 @@ function deleteTodo(event){
     saveTodos();
     li.remove();
 }
-
+function viewMore(span){
+    const box = document.createElement("textarea");
+    span.innerText="바뀜";
+}
 function paintTodo(newTodo){
     const li = document.createElement("li");
     li.id = newTodo.id;
     const span = document.createElement("span");
     span.innerText=newTodo.text;
+
     const button = document.createElement("button");
     button.innerText="X";
     button.addEventListener("click",deleteTodo);
+
+    const morebutton = document.createElement("button");
+    morebutton.innerText="수정";
+    morebutton.addEventListener("click",event=>viewMore(span));
+
     li.appendChild(span);
     li.appendChild(button);
+    li.appendChild(morebutton);
     todoList.appendChild(li);
-}
 
+    span.addEventListener("click",function(){
+        span.classList.toggle("line-through");
+    });
+}
 function handleToDoSubmit(event){
     event.preventDefault();
     const newTodo = todoInput.value;
