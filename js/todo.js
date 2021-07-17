@@ -30,7 +30,7 @@ function paintTodo(newTodo){
     button.addEventListener("click",deleteTodo);
 
     const morebutton = document.createElement("button");
-    morebutton.innerText="수정";
+    morebutton.innerText="...";
     morebutton.addEventListener("click",event=>viewMore(span));
 
     li.appendChild(span);
