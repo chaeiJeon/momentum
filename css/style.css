@@ -4,3 +4,13 @@
 .line-through{
     text-decoration: line-through;
 }
+.background{
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+    left:0;
+    right:0;
+    opacity: 40%;
+    z-index: -999;
+}
