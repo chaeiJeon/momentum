@@ -15,27 +15,22 @@ function deleteTodo(event){
     saveTodos();
     li.remove();
 }
-function viewMore(morebutton,span,li){
+function viewMore(span,li){
     const form = document.createElement("form");
     const input = document.createElement("input");
     
-    morebutton.addEventListener("click",event=>{
-        form.classList.toggle("hidden");
-        form.appendChild(input);
-    })
-
+    form.appendChild(input);
     li.appendChild(form);
 
     form.addEventListener("submit",event=>{
         event.preventDefault();
         span.innerText=input.value;
         changeId=event.target.parentElement.id;
-        change=toDos.filter(todo=>{
+        toDos.filter(todo=>{
             if(todo.id==changeId){
                 todo.text=input.value;
             }
         });
-        console.log(`toDos : ${toDos}`);
         saveTodos();
         input.classList.add("hidden");
     })
@@ -53,9 +48,8 @@ function paintTodo(newTodo){
     const morebutton = document.createElement("button");
     morebutton.innerText="...";
     morebutton.addEventListener("click",event=>{
-        viewMore(morebutton,span,li);
+        viewMore(span,li);
     });
-
     li.appendChild(span);
     li.appendChild(button);
     li.appendChild(morebutton);
