@@ -15,7 +15,7 @@ function deleteTodo(event){
     saveTodos();
     li.remove();
 }
-function viewMore(span,li){
+function modifyTodo(span,li){
     const form = document.createElement("form");
     const input = document.createElement("input");
     
@@ -35,6 +35,9 @@ function viewMore(span,li){
         input.classList.add("hidden");
     })
 }
+function selectPriority(){
+
+}
 function paintTodo(newTodo){
     const li = document.createElement("li");
     li.id = newTodo.id;
@@ -46,10 +49,37 @@ function paintTodo(newTodo){
     button.addEventListener("click",deleteTodo);
 
     const morebutton = document.createElement("button");
+    const modify = document.createElement("button");
+    const modifyImage = document.createElement("img");
+    modifyImage.src="./img/pencil.png";
+    modifyImage.className="button-image";
+    const priority = document.createElement("button");
+    const priorityImage = document.createElement("img");
+    priorityImage.src="./img/numbered-information.png";
+    priorityImage.className="button-image";
+
+    modify.appendChild(modifyImage);
+    priority.appendChild(priorityImage);
+
     morebutton.innerText="...";
-    morebutton.addEventListener("click",event=>{
-        viewMore(span,li);
+    modify.classList.add("hidden");
+    priority.classList.add("hidden");
+
+    morebutton.addEventListener("mouseenter",event=>{
+        modify.classList.remove("hidden");
+        priority.classList.remove("hidden");
     });
+    modify.addEventListener("click",event=>{
+        modifyTodo(span,li);
+    });
+    priority.addEventListener("click",selectPriority);
+    morebutton.addEventListener("mouseleave",event=>{
+        modify.classList.add("hidden");
+        priority.classList.add("hidden");
+    });
+
+    morebutton.appendChild(modify);
+    morebutton.appendChild(priority);
     li.appendChild(span);
     li.appendChild(button);
     li.appendChild(morebutton);
@@ -59,6 +89,7 @@ function paintTodo(newTodo){
         span.classList.toggle("line-through");
     });
 }
+
 function handleToDoSubmit(event){
     event.preventDefault();
     const newTodo = todoInput.value;
