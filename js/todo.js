@@ -2,8 +2,9 @@ const todoForm=document.querySelector("#todo-form");
 const todoInput=todoForm.querySelector("input");
 const todoList=document.querySelector("#todo-list");
 
-let toDos=[];
 
+let toDos=[];
+let flag=false;
 const TODOS_KEY="todos";
 
 function saveTodos(){
@@ -15,13 +16,20 @@ function deleteTodo(event){
     saveTodos();
     li.remove();
 }
-function modifyTodo(span,li){
+function modifyTodo(modify,highlighter,span,li){
     const form = document.createElement("form");
     const input = document.createElement("input");
+    input.classList.add("hidden");
     
     form.appendChild(input);
     li.appendChild(form);
 
+    modify.addEventListener("click",event=>{
+        input.classList.toggle("hidden");
+    });
+    highlighter.addEventListener("click",event=>{
+        span.classList.toggle("highlighter")
+    });
     form.addEventListener("submit",event=>{
         event.preventDefault();
         span.innerText=input.value;
@@ -33,10 +41,9 @@ function modifyTodo(span,li){
         });
         saveTodos();
         input.classList.add("hidden");
-    })
-}
-function selectPriority(){
-
+        flag=false;
+        input.value="";
+    });
 }
 function paintTodo(newTodo){
     const li = document.createElement("li");
@@ -53,33 +60,29 @@ function paintTodo(newTodo){
     const modifyImage = document.createElement("img");
     modifyImage.src="./img/pencil.png";
     modifyImage.className="button-image";
-    const priority = document.createElement("button");
-    const priorityImage = document.createElement("img");
-    priorityImage.src="./img/numbered-information.png";
-    priorityImage.className="button-image";
+    const highlighter = document.createElement("button");
+    const highlighterImage = document.createElement("img");
+    highlighterImage.src="./img/star.png";
+    highlighterImage.className="button-image";
 
     modify.appendChild(modifyImage);
-    priority.appendChild(priorityImage);
+    highlighter.appendChild(highlighterImage);
 
     morebutton.innerText="...";
     modify.classList.add("hidden");
-    priority.classList.add("hidden");
+    highlighter.classList.add("hidden");
 
     morebutton.addEventListener("mouseenter",event=>{
         modify.classList.remove("hidden");
-        priority.classList.remove("hidden");
+        highlighter.classList.remove("hidden");
     });
-    modify.addEventListener("click",event=>{
-        modifyTodo(span,li);
-    });
-    priority.addEventListener("click",selectPriority);
     morebutton.addEventListener("mouseleave",event=>{
         modify.classList.add("hidden");
-        priority.classList.add("hidden");
+        highlighter.classList.add("hidden");
     });
 
     morebutton.appendChild(modify);
-    morebutton.appendChild(priority);
+    morebutton.appendChild(highlighter);
     li.appendChild(span);
     li.appendChild(button);
     li.appendChild(morebutton);
@@ -88,12 +91,13 @@ function paintTodo(newTodo){
     span.addEventListener("click",function(){
         span.classList.toggle("line-through");
     });
+    
+    modifyTodo(modify,highlighter,span,li);
 }
 
 function handleToDoSubmit(event){
     event.preventDefault();
     const newTodo = todoInput.value;
-    console.log(newTodo);
     todoInput.value="";
     const newTodoObj = {
         text:newTodo,

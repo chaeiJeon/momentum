@@ -36,3 +36,6 @@ button{
     justify-content: center;
     align-items: center;
 }
+.highlighter{
+    background-color: rgba(187, 129, 245, 30%);
+}
