@@ -2,7 +2,6 @@ const todoForm=document.querySelector("#todo-form");
 const todoInput=todoForm.querySelector("input");
 const todoList=document.querySelector("#todo-list");
 
-
 let toDos=[];
 let flag=false;
 const TODOS_KEY="todos";

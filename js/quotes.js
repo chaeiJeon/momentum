@@ -1,3 +1,5 @@
+const request = require("request");
+
 const express = require('express');
 const quote = document.querySelector("#quote span");
 const app = express();
@@ -6,7 +8,7 @@ const secret = "Fxlvo_18hB";
 const apiURL = "https://openapi.naver.com/v1/papago/n2mt";
 
 function selectQuote(){
-    fetch("	https://api.adviceslip.com/advice")
+    fetch("https://api.adviceslip.com/advice")
         .then(Response=>Response.json())
         .then(data=>{
             const query=data.slip.advice;
