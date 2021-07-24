@@ -51,7 +51,7 @@ body{
 #clock{
     font-family: "head";
     font-size:60px;
-    color: green;
+    color: black;
 }
 #login-form{
     font-family: "head";
@@ -60,7 +60,7 @@ body{
 #greeting{
     font-family: "head";
     font-size: 50px;
-    color: red;
+    color: darkslategrey;
 }
 #weather{
     text-align: right;
