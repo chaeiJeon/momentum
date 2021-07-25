@@ -12,7 +12,7 @@ function onLoginSubmit(event){
     localStorage.setItem(USERNAME_KEY, username);
     paintGreetings();
 }
-
+console.log(loginForm)
 function paintGreetings(){
     const username=localStorage.getItem(USERNAME_KEY);
     greeting.innerText = `Hello ${username}`;

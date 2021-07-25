@@ -116,3 +116,4 @@ if(saveToDos != null){
     toDos = parsedToDos;
     parsedToDos.forEach(paintTodo);
 }
+console.log(todoList);
