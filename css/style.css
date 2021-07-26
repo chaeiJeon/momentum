@@ -51,7 +51,7 @@ button{
 }
 .highlighter{
     background-color: rgba(187, 129, 245, 30%);
-    border-radius: 10px;
+    border-radius: 9px;
 }
 #search-form{
     float:left;
